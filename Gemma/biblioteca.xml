@@ -1,0 +1,137 @@
+<!--DTD-->
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE biblioteca [
+<!ELEMENT tipo_doc (nombre, id, tipo_clase)>
+<!ELEMENT nombre (#PCDATA)>
+<!ELEMENT id #REQUIRED>
+<!ELEMENT tipo_clase clase_libro> 
+  <!ATTLIST tipo_clase clase_libro (Novela | Infantil | Didactico)>
+<!ELEMENT titulo (titulo_capitulo, indice, sinopsis, num_pag)>
+<!ELEMENT titulo_capitulo (#PCDATA)>
+<!ELEMENT indice (#PCDATA)>
+<!ELEMENT sinopsis (#PCDATA)>
+<!ELEMENT num_pag (#PCDATA)>
+<!ELEMENT capitulo (num_pag_capitulo)>
+<!ELEMENT num_pag_capitulo (#PCDATA)>
+<!ELEMENT tipo_clase clase_periodico> 
+  <!ATTLIST tipo_clase clase_periodico (Nacional | Internacional) 
+   fecha_publicacion
+   dia CDATA #REQUIRED
+   mes CDATA #REQUIRED
+   año CDATA #REQUIRED>
+<!ELEMENT seccion (Economica | Opinion | Deportes | Nacional | Internacional) >
+  <!ATTLIST articulo (#PCDATA)>
+  <!ATTLIST autor (#PCDATA)>
+<!ELEMENT tipo_clase clase_revista (Informatica | Corazon | Coches | Investigacion | Otras)>
+<!ELEMENT titulo>
+<!ELEMENT num_revista (#PCDATA)>
+<!ELEMENT indice (#PCDATA)>
+<!ELEMENT num_pag (#PCDATA)>
+<!ELEMENT seccion (#PCDATA)>
+<!ELEMENT num_pag_seccion (#PCDATA)>
+<!ELEMENT contenido (#PCDATA)>
+  <!ATTLIST informacion (#PCDATA)>
+<!ELEMENT informacion(#PCDATA)>
+] >
+
+<!--XML-->
+
+<biblioteca>
+<tipo_doc>
+<nombre>Libro</nombre>
+<id>L0001</id>
+<tipo_clase clase_libro = "Novela"></tipo_clase>
+  <titulo>titulo</titulo>
+    <titulo_capitulo>titulo capitulo</titulo_capitulo>
+    <indice> </indice>
+    <sinopsis> </sinopsis>
+    <num_pag> </num_pag>
+   <capitulo> </capitulo>
+    <num_pag_capitulo> </num_pag_capitulo>
+<informacion> </informacion>
+</tipo_doc>
+
+
+<tipo_doc>
+<nombre>Periodico</nombre>
+<id>P0001</id>
+<tipo_clase clase_periodico= "Nacional" fecha_publicacion= "17/05/2021" ></tipo_clase>
+<seccion tipo_seccion= "Economica"></seccion>
+   <articulo> </articulo>
+   <autor> </autor>
+<informacion> </informacion>
+</tipo_doc>
+
+<tipo_doc>
+<nombre>Revista</nombre>
+<id>R</id>
+<tipo_clase clase_revista= "Informatica"> </tipo_clase>
+  <titulo_revista></titulo_revista>
+    <num_revista></num_revista>
+    <indice></indice>
+    <num_pag></num_pag>
+    <seccion></seccion>
+    <num_pag_seccion></num_pag_seccion>
+    <contenido informacion = "informacion"></contenido>
+<contenido> </contenido>
+</tipo_doc>
+
+</biblioteca>
+
+<!--SCHEMA-->
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="biblioteca" type="bibliotecaType"/>
+  <xs:complexType name="tipo_claseType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="clase_libro" use="optional"/>
+        <xs:attribute type="xs:string" name="clase_periodico" use="optional"/>
+        <xs:attribute type="xs:string" name="fecha_publicacion" use="optional"/>
+        <xs:attribute type="xs:string" name="clase_revista" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="tipo_docType">
+    <xs:sequence>
+      <xs:element type="xs:string" name="nombre"/>
+      <xs:element type="xs:string" name="id"/>
+      <xs:element type="tipo_claseType" name="tipo_clase"/>
+      <xs:element type="xs:string" name="titulo" minOccurs="0"/>
+      <xs:element type="xs:string" name="titulo_capitulo" minOccurs="0"/>
+      <xs:element type="xs:string" name="titulo_revista" minOccurs="0"/>
+      <xs:element type="xs:string" name="num_revista" minOccurs="0"/>
+      <xs:element type="xs:string" name="indice" minOccurs="0"/>
+      <xs:element type="xs:string" name="sinopsis" minOccurs="0"/>
+      <xs:element type="xs:string" name="num_pag" minOccurs="0"/>
+      <xs:element type="xs:string" name="capitulo" minOccurs="0"/>
+      <xs:element type="xs:string" name="num_pag_capitulo" minOccurs="0"/>
+      <xs:element type="seccionType" name="seccion" minOccurs="0"/>
+      <xs:element type="xs:string" name="articulo" minOccurs="0"/>
+      <xs:element type="xs:string" name="autor" minOccurs="0"/>
+      <xs:element type="xs:string" name="informacion" minOccurs="0"/>
+      <xs:element type="xs:string" name="num_pag_seccion" minOccurs="0"/>
+      <xs:element type="contenidoType" name="contenido" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="seccionType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="tipo_seccion" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="contenidoType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute type="xs:string" name="informacion" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="bibliotecaType">
+    <xs:sequence>
+      <xs:element type="tipo_docType" name="tipo_doc" maxOccurs="unbounded" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
