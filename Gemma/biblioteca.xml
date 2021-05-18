@@ -2,9 +2,9 @@
 
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE biblioteca [
-<!ELEMENT tipo_doc (nombre, id, tipo_clase)>
+<!ELEMENT tipo_doc (nombre, id_doc, tipo_clase)>
 <!ELEMENT nombre (#PCDATA)>
-<!ELEMENT id #REQUIRED>
+<!ELEMENT id_doc #REQUIRED>
 <!ELEMENT tipo_clase clase_libro> 
   <!ATTLIST tipo_clase clase_libro (Novela | Infantil | Didactico)>
 <!ELEMENT titulo (titulo_capitulo, indice, sinopsis, num_pag)>
@@ -40,7 +40,7 @@
 <biblioteca>
 <tipo_doc>
 <nombre>Libro</nombre>
-<id>L0001</id>
+<id_doc>L0001</id_doc>
 <tipo_clase clase_libro = "Novela"></tipo_clase>
   <titulo>Seda</titulo>
     <titulo_capitulo>Capitulo 1</titulo_capitulo>
@@ -55,7 +55,7 @@
 
 <tipo_doc>
 <nombre>Periodico</nombre>
-<id>P0001</id>
+<id_doc>P0001</id_doc>
 <tipo_clase clase_periodico= "Nacional" fecha_publicacion= "17/05/2021" ></tipo_clase>
 <seccion tipo_seccion= "Economica"></seccion>
    <articulo> Asi cotizaran los autonomos </articulo>
@@ -65,7 +65,7 @@
 
 <tipo_doc>
 <nombre>Revista</nombre>
-<id>R</id>
+<id_doc>R</id_doc>
 <tipo_clase clase_revista= "Informatica"> </tipo_clase>
   <titulo_revista>Revista Byte TI</titulo_revista>
     <num_revista>293</num_revista>
