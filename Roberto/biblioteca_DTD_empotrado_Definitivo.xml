@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE biblioteca [
+<!ELEMENT biblioteca (libros,revistas,periodicos)>
+<!--Aqui empieza DTD libros -->
+<!ELEMENT libros (libro+)>
+<!ELEMENT libro (titulolibro, capitulos, indicelibro, sipnosis, npaginaslibro)>
+	<!ATTLIST libro id_libro ID #REQUIRED >
+	<!ATTLIST libro tipo_clase (novela|infantil|didactico) "novela">
+<!ELEMENT titulolibro (#PCDATA)>
+<!ELEMENT capitulos (capitulo, npaginascapitulo, contenidolibro)>
+	<!ELEMENT capitulo (#PCDATA)>
+	<!ELEMENT npaginascapitulo (#PCDATA)>
+	<!ELEMENT contenidolibro (#PCDATA)>
+<!ELEMENT indicelibro (#PCDATA)>
+<!ELEMENT sipnosis (#PCDATA)>
+<!ELEMENT npaginaslibro (#PCDATA)>
+<!--Aqui empieza DTD revistas -->
+<!ELEMENT revistas (revista)>
+<!ELEMENT revista (titulorevista, nrevista, indicerevista, seccionesrevista, npaginasrevista)>
+    <!ATTLIST revista id_revista ID #REQUIRED >
+    <!ATTLIST revista tipo_clase (informatica|investigacion|corazon|otras) "informatica">
+<!ELEMENT titulorevista (#PCDATA)>
+<!ELEMENT nrevista (#PCDATA)>
+<!ELEMENT indicerevista (#PCDATA)>
+<!ELEMENT seccionesrevista (nseccion, npaginasseccion, contenidorevista)>
+    <!ELEMENT nseccion (#PCDATA)>
+    <!ELEMENT npaginasseccion (#PCDATA)>
+    <!ELEMENT contenidorevista (#PCDATA)>
+<!ELEMENT npaginasrevista (#PCDATA)>
+<!--Aqui empieza DTD periodicos -->
+<!ELEMENT periodicos (periodico+)>
+<!ELEMENT periodico (seccionesperiodico,fecha)>
+    <!ATTLIST periodico id_periodico ID #REQUIRED >
+    <!ATTLIST periodico tipo_clase (nacionales|internaciones) "nacionales">
+	<!ELEMENT fecha (dia,mes,anno)>
+		<!ELEMENT dia (#PCDATA)>
+		<!ELEMENT mes (#PCDATA)>
+		<!ELEMENT anno (#PCDATA)>
+<!ELEMENT seccionesperiodico (articulos)>
+    <!ATTLIST seccionesperiodico tipo_seccion (economia|opinion|deportes|nacional|internacional) "nacional">
+<!ELEMENT articulos (articulo, autor, contenidoperiodico)>
+    <!ELEMENT articulo (#PCDATA)>
+    <!ELEMENT autor (#PCDATA)>
+    <!ELEMENT contenidoperiodico (#PCDATA)>  
+]>
+
+
+
+<biblioteca>
+	<libros>
+		<libro id_libro="L0001" tipo_clase="novela">			
+			<titulolibro>El Gran Gatsby</titulolibro>
+			<capitulos>
+				<capitulo>"El truhan en la sombra"</capitulo>
+				<npaginascapitulo>30</npaginascapitulo>
+				<contenidolibro>Erase se una vez un tipo....</contenidolibro>
+			</capitulos>
+			<indicelibro> Capitulo 1 - Pag 3, Capitulo 2, Pag 33....</indicelibro>
+			<sipnosis>Trata de un hombre rico....</sipnosis>
+			<npaginaslibro>500</npaginaslibro>
+		</libro>
+	</libros>
+    <revistas>
+		<revista id_revista="R0001" tipo_clase="informatica">
+			<titulorevista>Pc World Magazine</titulorevista>
+			<nrevista>100</nrevista>
+			<indicerevista>Seccion 1, Pag 2, Seccion 2, Pag 10...</indicerevista>
+			<seccionesrevista>
+				<nseccion>Overclock para Dummies</nseccion>
+				<npaginasseccion>10</npaginasseccion>
+				<contenidorevista>Aprenda a quemar su computadora haciendo....</contenidorevista>				
+			</seccionesrevista>
+			<npaginasrevista>60</npaginasrevista>
+		</revista>
+	</revistas>
+    <periodicos>
+		<periodico id_periodico="P0001" tipo_clase="nacionales" >
+			<seccionesperiodico tipo_seccion="deportes">
+				<articulos>
+					<articulo>La clave del exito</articulo>
+					<autor>Paco Martinez Soria</autor>
+					<contenidoperiodico>Vaya del pueblo a la ciudad...</contenidoperiodico>
+				</articulos>
+			</seccionesperiodico>
+			<fecha>
+				<dia>18</dia>
+				<mes>05</mes>
+				<anno>2021</anno>
+			</fecha>
+		</periodico>
+	</periodicos>
+</biblioteca>
